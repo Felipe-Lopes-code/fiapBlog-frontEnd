@@ -13,8 +13,10 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "vitest",
-    "clear": "rm -rf node_modules package-lock.json",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "test:coverage": "vitest run --coverage",
+    "clear": "if exist node_modules rd /s /q node_modules && if exist package-lock.json del package-lock.json",
     "refresh": "npm run clear && npm install"
   },
   "dependencies": {
@@ -29,8 +31,9 @@
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^14.3.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.7.0",

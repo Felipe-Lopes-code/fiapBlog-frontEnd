@@ -41,6 +41,46 @@ VITE_API_URL=http://localhost:3000
 npm run dev
 ```
 
+## 🔍 Problemas Conhecidos e Soluções
+
+### Testes
+
+1. **Erro: ThemeProvider "theme" prop is required**
+   - **Problema**: O styled-components requer um tema válido durante os testes
+   - **Solução**: Criamos um `ThemeProviderWrapper` que encapsula o tema e fornece-o para os componentes
+   - **Arquivo**: `src/styles/ThemeProvider.jsx`
+
+2. **Erro: You cannot render a <Router> inside another <Router>**
+   - **Problema**: O componente App inclui um BrowserRouter, que conflita com o BrowserRouter dos testes
+   - **Solução**: Criamos um componente `TestApp` específico para testes que não inclui o BrowserRouter
+   - **Arquivo**: `src/test/TestApp.jsx`
+
+3. **Aviso: @import CSS syntax in createGlobalStyle**
+   - **Status**: Não afeta a funcionalidade dos testes
+   - **Solução alternativa**: Considerar o uso de react-helmet ou incluir os estilos diretamente no index.html
+
+### Boas Práticas de Teste
+
+1. **Providers nos Testes**
+   ```jsx
+   const renderWithProviders = (component) => {
+     return render(
+       <BrowserRouter>
+         <ThemeProviderWrapper>
+           <AuthProvider>
+             {component}
+           </AuthProvider>
+         </ThemeProviderWrapper>
+       </BrowserRouter>
+     );
+   };
+   ```
+
+2. **Componente de Teste Dedicado**
+   - Criar versões específicas para teste de componentes que dependem de providers globais
+   - Evitar duplicação de providers
+   - Manter a consistência do estado da aplicação durante os testes
+
 ## 🏗️ Estrutura do Projeto
 
 ```
@@ -144,10 +184,41 @@ A comunicação com o backend é feita através de uma API REST, utilizando o Ax
 
 ## 🧪 Testes
 
+### Executando os Testes
+
 Para rodar os testes:
 ```bash
 npm test
 ```
+
+### Estrutura de Testes
+
+O projeto utiliza:
+- Vitest como test runner
+- React Testing Library para testes de componentes
+- Jest DOM para assertions relacionadas ao DOM
+
+### Arquivos de Teste
+
+```
+src/
+├── test/
+│   ├── setup.js           # Configuração global dos testes
+│   └── TestApp.jsx        # Versão do App específica para testes
+├── App.test.jsx           # Testes de integração e segurança
+└── styles/
+    └── ThemeProvider.jsx  # Provider de tema com suporte a testes
+```
+
+### Testes de Segurança
+
+Os testes cobrem:
+1. Autenticação
+   - Redirecionamento de usuários não autenticados
+   - Proteção de rotas
+2. Controle de Acesso
+   - Permissões baseadas em papéis (aluno/professor)
+   - Visibilidade condicional de funcionalidades
 
 ## 🚀 Deploy
 
