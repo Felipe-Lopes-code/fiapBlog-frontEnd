@@ -1,4 +1,4 @@
-import { hashPassword, verifyPassword } from '../utils/crypto';
+import { verifyPassword } from '../utils/crypto';
 
 // Mock de usuários para desenvolvimento com senhas já hasheadas
 const mockUsers = [
@@ -77,7 +77,7 @@ export const mockAuthApi = {
       }
       const { passwordHash: _, salt: __, ...userWithoutPassword } = user;
       return userWithoutPassword;
-    } catch (error) {
+    } catch {
       throw new Error("Token inválido");
     }
   },

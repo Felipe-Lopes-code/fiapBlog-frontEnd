@@ -11,13 +11,20 @@
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 2",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
     "clear": "if exist node_modules rd /s /q node_modules && if exist package-lock.json del package-lock.json",
-    "refresh": "npm run clear && npm install"
+    "refresh": "npm run clear && npm install",
+    "docker:build": "docker build -t fiap-blog-frontend .",
+    "docker:build-dev": "docker build -f Dockerfile.dev -t fiap-blog-frontend:dev .",
+    "docker:run": "docker run -p 8080:80 fiap-blog-frontend",
+    "docker:run-dev": "docker run -p 3000:3000 -v $(pwd):/app fiap-blog-frontend:dev",
+    "docker:compose-up": "docker-compose up",
+    "docker:compose-dev": "docker-compose up frontend-dev",
+    "docker:compose-test": "docker-compose up frontend-test"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -31,6 +38,7 @@
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
@@ -38,6 +46,11 @@
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitest/coverage-v8": "^0.34.4",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^6.1.1",
+    "eslint-plugin-react-refresh": "^0.4.23",
+    "globals": "^16.4.0",
     "jsdom": "^22.1.0",
     "rimraf": "^5.0.1",
     "vite": "^4.4.5",

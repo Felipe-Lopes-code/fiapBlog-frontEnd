@@ -45,7 +45,7 @@ const LoginPage = () => {
     try {
       await login(credentials.email, credentials.password);
       navigate('/');
-    } catch (error) {
+    } catch {
       setError('Erro ao fazer login. Tente novamente.');
     }
   };

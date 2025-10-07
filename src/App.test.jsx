@@ -2,7 +2,6 @@ import React from 'react';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProviderWrapper } from './styles/ThemeProvider';
 import { TestApp } from './test/TestApp';

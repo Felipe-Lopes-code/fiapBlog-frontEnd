@@ -8,7 +8,7 @@ import EditPostPage from '../pages/EditPostPage';
 import AdminPage from '../pages/AdminPage';
 import LoginPage from '../pages/LoginPage';
 
-const PrivateRoute = ({ children }) => {
+const _PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
