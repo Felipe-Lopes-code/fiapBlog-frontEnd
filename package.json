@@ -1,30 +1,74 @@
 {
   "name": "fiap-blog-frontend",
+  "version": "1.0.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "description": "Sistema de Blog Educacional da FIAP - Frontend em React com controle de acesso baseado em funções",
+  "keywords": [
+    "react",
+    "vite",
+    "blog",
+    "education",
+    "fiap",
+    "authentication",
+    "role-based-access",
+    "material-ui",
+    "styled-components"
+  ],
+  "author": {
+    "name": "FIAP Team",
+    "email": "dev@fiap.com.br"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fiap/fiapBlog-frontEnd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fiap/fiapBlog-frontEnd/issues"
+  },
+  "homepage": "https://github.com/fiap/fiapBlog-frontEnd#readme",
+  "license": "MIT",
   "engines": {
-    "node": ">=14.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
   },
   "scripts": {
     "start": "vite",
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 2",
+    "build:analyze": "vite build --mode analyze",
     "preview": "vite preview",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 2",
+    "lint:fix": "eslint . --ext js,jsx --fix",
+    "lint:ci": "eslint . --ext js,jsx --max-warnings 0 --format json -o eslint-report.json",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "test": "vitest",
-    "test:watch": "vitest",
+    "test:watch": "vitest --watch",
+    "test:run": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "clear": "if exist node_modules rd /s /q node_modules && if exist package-lock.json del package-lock.json",
-    "refresh": "npm run clear && npm install",
+    "test:coverage:watch": "vitest --coverage --watch",
+    "test:ui": "vitest --ui",
+    "test:ci": "vitest run --coverage --reporter=junit --outputFile=test-results.xml",
+    "clean": "if exist dist rd /s /q dist && if exist node_modules rd /s /q node_modules",
+    "clean:cache": "if exist node_modules\\.vite rd /s /q node_modules\\.vite",
+    "refresh": "npm run clean && npm install",
+    "security:audit": "npm audit --audit-level=moderate",
+    "security:fix": "npm audit fix",
+    "deps:check": "npm outdated",
+    "deps:update": "npm update",
     "docker:build": "docker build -t fiap-blog-frontend .",
     "docker:build-dev": "docker build -f Dockerfile.dev -t fiap-blog-frontend:dev .",
     "docker:run": "docker run -p 8080:80 fiap-blog-frontend",
     "docker:run-dev": "docker run -p 3000:3000 -v $(pwd):/app fiap-blog-frontend:dev",
-    "docker:compose-up": "docker-compose up",
-    "docker:compose-dev": "docker-compose up frontend-dev",
-    "docker:compose-test": "docker-compose up frontend-test"
+    "docker:compose:up": "docker-compose up",
+    "docker:compose:dev": "docker-compose up frontend-dev",
+    "docker:compose:test": "docker-compose up frontend-test",
+    "docker:compose:down": "docker-compose down",
+    "docker:logs": "docker-compose logs -f",
+    "health:check": "curl -f http://localhost:3000/health || exit 1",
+    "ci": "npm run lint:ci && npm run test:ci && npm run build",
+    "prepare": "npm run security:audit"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",

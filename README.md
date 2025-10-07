@@ -1,24 +1,82 @@
 # FIAP Blog - Frontend
 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-12%2F12-brightgreen)
+![Coverage](https://img.shields.io/badge/coverage-53.65%25-yellow)
+![Docker](https://img.shields.io/badge/docker-ready-blue)
+
 Este é o frontend do FIAP Blog, uma aplicação web desenvolvida em React que permite a criação, visualização e gerenciamento de posts em um blog, com funcionalidades específicas para professores e alunos.
 
-> **Nota**: Atualizado em 07/10/2025 com novas funcionalidades de controle de acesso e sistema de comentários.
+> **Atualizado**: 07/10/2025 - Implementado controle de acesso baseado em roles, sistema de testes completo, CI/CD e containerização Docker.
 
-## 🚀 Tecnologias Utilizadas
+## 🎯 Funcionalidades
 
-- React
-- Vite
-- React Router Dom
-- Styled Components
-- Axios
-- Context API para gerenciamento de estado
+### 👥 Sistema de Autenticação
+- Login com diferentes níveis de acesso (Professor/Aluno)
+- Controle de rotas baseado em autenticação
+- Sistema de tokens JWT
+
+### 📝 Gerenciamento de Posts
+- **Professores**: Criar, editar e excluir posts
+- **Alunos**: Visualizar posts e adicionar comentários
+- Sistema de comentários com moderação
+
+### � Controle de Acesso
+- Diferentes interfaces baseadas no papel do usuário
+- Proteção de rotas sensíveis
+- Validação de permissões no frontend
+
+## 🚀 Tecnologias e Ferramentas
+
+### Core
+- **React 18** - Biblioteca principal
+- **Vite** - Build tool e dev server
+- **React Router Dom** - Roteamento
+- **Styled Components** - Estilização
+- **Material-UI** - Componentes UI
+
+### Testes
+- **Vitest** - Framework de testes
+- **React Testing Library** - Testes de componentes
+- **Jest DOM** - Matchers adicionais
+- **Cobertura V8** - Relatórios de cobertura
+
+### DevOps
+- **Docker** - Containerização
+- **GitHub Actions** - CI/CD
+- **ESLint** - Qualidade de código
+- **Dependabot** - Atualizações automáticas
 
 ## 📋 Requisitos do Sistema
 
-- Node.js (versão 14 ou superior)
-- npm ou yarn
+- **Node.js** 18 ou superior
+- **npm** 6 ou superior
+- **Docker** (opcional, para containerização)
+- **Git** para versionamento
 
-## 🔧 Instalação
+## 🔧 Instalação e Configuração
+
+### 🐳 Usando Docker (Recomendado)
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/Felipe-Lopes-code/fiapBlog-frontEnd.git
+cd fiapBlog-frontEnd
+```
+
+2. Build e execute com Docker Compose:
+```bash
+# Desenvolvimento
+docker-compose up frontend-dev
+
+# Produção
+docker-compose up frontend-prod
+
+# Testes
+docker-compose up frontend-test
+```
+
+### � Instalação Local
 
 1. Clone o repositório:
 ```bash
@@ -32,9 +90,8 @@ npm install
 ```
 
 3. Configure as variáveis de ambiente:
-   - Crie um arquivo `.env` na raiz do projeto
-   - Adicione a URL da API:
 ```env
+# .env
 VITE_API_URL=http://localhost:3000
 ```
 
@@ -43,73 +100,211 @@ VITE_API_URL=http://localhost:3000
 npm run dev
 ```
 
+## 🧪 Testes
+
+### Executar Testes
+```bash
+# Testes em modo watch
+npm test
+
+# Testes com cobertura
+npm run test:coverage
+
+# Testes no Docker
+npm run docker:compose-test
+```
+
+### Cobertura Atual
+- **Total**: 53.65% das linhas cobertas
+- **Componentes**: 100% de cobertura
+- **Layout**: 84.69% de cobertura
+- **Estilos**: 100% de cobertura
+
+## 🐳 Docker
+
+### Comandos Disponíveis
+```bash
+# Build de produção
+npm run docker:build
+
+# Executar em produção
+npm run docker:run
+
+# Desenvolvimento com hot reload
+npm run docker:run-dev
+
+# Subir todos os serviços
+npm run docker:compose-up
+```
+
+### Estrutura Docker
+- **Dockerfile**: Build otimizado para produção
+- **Dockerfile.dev**: Ambiente de desenvolvimento
+- **docker-compose.yml**: Orquestração de serviços
+- **nginx.conf**: Configuração customizada do Nginx
+
+## 🚀 CI/CD Pipeline
+
+### GitHub Actions
+O projeto inclui pipeline completo de CI/CD:
+
+1. **Lint**: Verificação de qualidade de código
+2. **Test**: Execução de testes unitários
+3. **Build**: Compilação da aplicação
+4. **Docker**: Build e push de imagens
+5. **Security**: Scan de vulnerabilidades
+6. **Deploy**: Deploy automático (configurável)
+
+### Workflows
+- `.github/workflows/ci-cd.yml`: Pipeline principal
+- `.github/workflows/dependabot.yml`: Auto-merge de dependências
+
 ## 🔍 Problemas Conhecidos e Soluções
 
-### Testes
+### 🧪 Testes
 
-1. **Erro: ThemeProvider "theme" prop is required**
-   - **Problema**: O styled-components requer um tema válido durante os testes
-   - **Solução**: Criamos um `ThemeProviderWrapper` que encapsula o tema e fornece-o para os componentes
+#### ✅ Solucionados
+1. **ThemeProvider "theme" prop is required**
+   - **Solução**: Implementado `ThemeProviderWrapper` 
    - **Arquivo**: `src/styles/ThemeProvider.jsx`
 
-2. **Erro: You cannot render a <Router> inside another <Router>**
-   - **Problema**: O componente App inclui um BrowserRouter, que conflita com o BrowserRouter dos testes
-   - **Solução**: Criamos um componente `TestApp` específico para testes que não inclui o BrowserRouter
+2. **Router conflicts nos testes**
+   - **Solução**: Criado `TestApp` dedicado para testes
    - **Arquivo**: `src/test/TestApp.jsx`
 
-3. **Aviso: @import CSS syntax in createGlobalStyle**
-   - **Status**: Não afeta a funcionalidade dos testes
-   - **Solução alternativa**: Considerar o uso de react-helmet ou incluir os estilos diretamente no index.html
+3. **React não definido em JSX**
+   - **Solução**: Imports explícitos do React em arquivos de teste
+   - **Configuração**: ESLint atualizado para React 18
 
-### Boas Práticas de Teste
+#### ⚠️ Warnings Conhecidos
+- **@import CSS syntax in createGlobalStyle**: Não afeta funcionalidade
+- **Fast refresh warnings**: Normal em arquivos de contexto
 
-1. **Providers nos Testes**
-   ```jsx
-   const renderWithProviders = (component) => {
-     return render(
-       <BrowserRouter>
-         <ThemeProviderWrapper>
-           <AuthProvider>
-             {component}
-           </AuthProvider>
-         </ThemeProviderWrapper>
-       </BrowserRouter>
-     );
-   };
-   ```
+### 🐳 Docker
 
-2. **Componente de Teste Dedicado**
-   - Criar versões específicas para teste de componentes que dependem de providers globais
-   - Evitar duplicação de providers
-   - Manter a consistência do estado da aplicação durante os testes
+#### Builds
+- **Primeira build**: ~25 segundos (instala dependências)
+- **Builds subsequentes**: ~15 segundos (usa cache)
+- **Imagem final**: ~50MB (produção otimizada)
 
-## 🏗️ Estrutura do Projeto
+#### Troubleshooting
+```bash
+# Limpar cache Docker
+docker system prune -f
 
-```
-src/
-├── api/
-│   └── api.js              # Configuração e serviços do Axios
-├── components/
-│   ├── common/             # Componentes reutilizáveis
-│   └── layout/            # Componentes de layout
-├── context/
-│   └── AuthContext.jsx     # Contexto de autenticação
-├── hooks/
-│   └── useApi.js          # Hooks personalizados
-├── pages/                 # Páginas da aplicação
-├── styles/                # Estilos e temas
-└── routes/                # Configuração de rotas
+# Rebuild sem cache
+docker build --no-cache -t fiap-blog-frontend .
+
+# Ver logs do container
+docker logs <container-name>
 ```
 
-## 📱 Funcionalidades
+## 📚 Estrutura do Projeto
 
-### Sistema de Posts
-- Criação de posts (apenas professores)
-- Visualização de posts (todos usuários)
-- Edição de posts (apenas professores)
-- Exclusão de posts (apenas professores)
-- Campo de busca por título ou conteúdo
-- Navegação intuitiva entre posts
+```
+fiapBlog-frontEnd/
+├── 📁 .github/
+│   ├── workflows/
+│   │   ├── ci-cd.yml           # Pipeline principal
+│   │   └── dependabot.yml      # Auto-merge de dependências
+│   └── dependabot.yml          # Configuração do Dependabot
+├── 📁 src/
+│   ├── 📁 api/
+│   │   ├── api.js              # Configuração Axios e serviços
+│   │   ├── mockApi.js          # Mock da API para desenvolvimento
+│   │   └── mockAuthApi.js      # Mock de autenticação
+│   ├── 📁 components/
+│   │   ├── common/
+│   │   │   └── StyledComponents.jsx  # Componentes base estilizados
+│   │   └── layout/
+│   │       └── MainLayout.jsx  # Layout principal da aplicação
+│   ├── 📁 context/
+│   │   └── AuthContext.jsx     # Gerenciamento de estado de autenticação
+│   ├── 📁 hooks/
+│   │   ├── useApi.js           # Hook para chamadas da API
+│   │   └── usePostsPresenter.js # Hook para lógica de posts
+│   ├── 📁 pages/
+│   │   ├── AdminPage.jsx       # Página de administração
+│   │   ├── CreatePostPage.jsx  # Criação de posts
+│   │   ├── EditPostPage.jsx    # Edição de posts
+│   │   ├── HomePage.jsx        # Página inicial com lista de posts
+│   │   ├── LoginPage.jsx       # Página de login
+│   │   └── PostPage.jsx        # Visualização de post individual
+│   ├── 📁 routes/
+│   │   └── AppRouter.jsx       # Configuração de roteamento
+│   ├── 📁 styles/
+│   │   ├── GlobalStyles.js     # Estilos globais
+│   │   ├── ThemeProvider.jsx   # Provider de temas
+│   │   └── theme.js           # Definições do tema
+│   ├── 📁 test/
+│   │   ├── CommonComponents.test.jsx  # Testes de componentes
+│   │   ├── Simple.test.jsx     # Testes básicos
+│   │   ├── TestApp.jsx         # App dedicado para testes
+│   │   ├── testUtils.js        # Utilitários de teste
+│   │   └── setup.js           # Configuração dos testes
+│   ├── 📁 utils/
+│   │   ├── crypto.js          # Funções de criptografia
+│   │   └── generateHash.js    # Geração de hashes
+│   ├── App.jsx               # Componente principal
+│   ├── App.test.jsx          # Testes da aplicação
+│   └── main.jsx              # Ponto de entrada
+├── 📁 coverage/              # Relatórios de cobertura
+├── 📄 Dockerfile            # Build de produção
+├── 📄 Dockerfile.dev        # Build de desenvolvimento
+├── 📄 docker-compose.yml    # Orquestração de serviços
+├── 📄 nginx.conf           # Configuração do Nginx
+├── 📄 .dockerignore        # Exclusões para Docker
+├── 📄 eslint.config.js     # Configuração do ESLint
+├── 📄 vite.config.js       # Configuração do Vite
+├── 📄 vitest.config.js     # Configuração dos testes
+└── 📄 package.json         # Dependências e scripts
+```
+
+## 📱 Funcionalidades Detalhadas
+
+### 🔐 Sistema de Autenticação
+- **Login seguro** com validação de credenciais
+- **Controle de sessão** com tokens JWT
+- **Logout automático** em caso de token expirado
+- **Redirecionamento** baseado no papel do usuário
+
+### 📝 Gerenciamento de Posts
+- **Criação**: Interface intuitiva para professores
+- **Visualização**: Lista paginada com busca
+- **Edição**: Funcionalidade completa de edição
+- **Exclusão**: Confirmação antes de deletar
+- **Busca**: Por título ou conteúdo do post
+
+### 💬 Sistema de Comentários
+- **Adicionar comentários**: Todos os usuários autenticados
+- **Moderação**: Professores podem excluir comentários
+- **Validação**: Comentários não podem ser vazios
+- **Threading**: Suporte a discussões organizadas
+
+### 🎨 Interface e UX
+- **Design responsivo** para mobile e desktop
+- **Tema consistente** com Material-UI
+- **Navegação intuitiva** com breadcrumbs
+- **Feedback visual** para ações do usuário
+- **Loading states** durante operações assíncronas
+
+## 👥 Controle de Acesso (Roles)
+
+### 👨‍🏫 Professor
+- ✅ Visualizar todos os posts
+- ✅ Criar novos posts
+- ✅ Editar próprios posts
+- ✅ Excluir próprios posts
+- ✅ Moderar comentários
+- ✅ Acesso à área administrativa
+
+### 👨‍🎓 Aluno
+- ✅ Visualizar posts públicos
+- ✅ Adicionar comentários
+- ✅ Buscar posts
+- ❌ Criar posts
+- ❌ Editar posts
+- ❌ Excluir conteúdo
 - Exibição de autor e data de criação
 
 ### Sistema de Comentários
@@ -182,54 +377,115 @@ npm install @vitejs/plugin-react --save-dev
 ```
 
 ### 2. Mock API
-- **Problema**: Dificuldades na formatação do arquivo mockApi.js e duplicação de dados
-- **Solução**: Reescrita do arquivo com estrutura adequada e remoção de duplicações
-- **Detalhes**: 
-  - Implementação de array mockPosts com dados estruturados
-  - Adição de delays artificiais para simular API real
-  - Correção da formatação de template strings
-  - Implementação de funções assíncronas com tratamento de erros
+## 🚀 Deploy e Produção
 
-### 3. Desenvolvimento Atual
-- Sistema de mock implementado com dados de exemplo
-- Funcionalidades básicas de CRUD funcionando localmente
-- Persistência de dados limitada à sessão do navegador
+### 🌍 Deploy Automático
+O projeto está configurado para deploy automático via GitHub Actions:
+- **Trigger**: Push para branch `main`
+- **Build**: Criação de imagem Docker otimizada
+- **Registry**: GitHub Container Registry
+- **Deploy**: Configurável para diferentes provedores
 
-### 4. Próximos Passos
-- Integração com backend real
-- Implementação de testes automatizados
-- Melhorias na UX/UI
-- Cache de dados para melhor performance
-
-A aplicação é totalmente responsiva, adaptando-se a diferentes tamanhos de tela:
-- Desktop
-- Tablet
-- Mobile
-
-## 🔄 Integração com Backend
-
-A comunicação com o backend é feita através de uma API REST, utilizando o Axios para:
-- Listagem de posts
-- Criação de posts
-- Edição de posts
-- Exclusão de posts
-- Autenticação de usuários
-- Gerenciamento de comentários
-
-## 🧪 Testes
-
-### Executando os Testes
-
-Para rodar os testes:
+### 🔧 Configuração de Produção
 ```bash
-npm test
+# Build de produção local
+npm run build
+
+# Servir build localmente
+npm run preview
+
+# Deploy com Docker
+docker build -t fiap-blog-frontend .
+docker run -p 80:80 fiap-blog-frontend
 ```
 
-### Estrutura de Testes
+### 🌐 Variáveis de Ambiente
+```env
+# Desenvolvimento
+VITE_API_URL=http://localhost:3000
 
-O projeto utiliza:
-- Vitest como test runner
-- React Testing Library para testes de componentes
+# Produção
+VITE_API_URL=https://api.fiapblog.com
+```
+
+## 🔒 Segurança
+
+### Headers de Segurança (Nginx)
+- `X-Frame-Options: SAMEORIGIN`
+- `X-XSS-Protection: 1; mode=block`
+- `X-Content-Type-Options: nosniff`
+- `Referrer-Policy: no-referrer-when-downgrade`
+- `Content-Security-Policy: default-src 'self'`
+
+### Autenticação
+- Tokens JWT com expiração
+- Validação no frontend e backend
+- Logout automático em caso de token inválido
+- Hash seguro de senhas
+
+## 🤝 Contribuição
+
+### Como Contribuir
+1. **Fork** do projeto
+2. **Clone** seu fork
+3. **Crie** uma branch para sua feature
+4. **Implemente** as mudanças
+5. **Execute** os testes
+6. **Commit** suas mudanças
+7. **Push** para sua branch
+8. **Abra** um Pull Request
+
+### Padrões de Código
+- **ESLint**: Seguir configuração do projeto
+- **Commits**: Usar conventional commits
+- **Testes**: Manter cobertura acima de 50%
+- **Documentação**: Atualizar README quando necessário
+
+### Conventional Commits
+```bash
+feat: adiciona nova funcionalidade
+fix: corrige bug específico
+docs: atualiza documentação
+test: adiciona ou corrige testes
+refactor: refatora código sem alterar funcionalidade
+```
+
+## 📞 Suporte e Contato
+
+### 🐛 Reportar Bugs
+- Abra uma [Issue](https://github.com/Felipe-Lopes-code/fiapBlog-frontEnd/issues)
+- Inclua passos para reproduzir
+- Adicione screenshots se relevante
+- Especifique versão do browser/OS
+
+### 💡 Sugestões
+- Use [Discussions](https://github.com/Felipe-Lopes-code/fiapBlog-frontEnd/discussions)
+- Descreva a funcionalidade desejada
+- Explique o caso de uso
+- Considere implementar e contribuir
+
+### 📚 Documentação Adicional
+- [🐳 Docker & CI/CD](./DOCKER_CICD.md) - Guia completo de containerização
+- [📊 Relatório de Testes](./TESTE_REPORT.md) - Resultados detalhados dos testes
+- [🔧 Instruções Docker](./DOCKER_TEST_INSTRUCTIONS.md) - Como testar containers
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+## 🙏 Agradecimentos
+
+- **FIAP** - Pela oportunidade de desenvolvimento
+- **React Team** - Pela excelente biblioteca
+- **Vite** - Pelo build tool ultrarrápido
+- **Styled Components** - Pela facilidade de estilização
+- **Community** - Pelas contribuições e feedback
+
+---
+
+**Desenvolvido com ❤️ para FIAP**
+
+*Última atualização: 07/10/2025*
 - Jest DOM para assertions relacionadas ao DOM
 
 ### Arquivos de Teste
