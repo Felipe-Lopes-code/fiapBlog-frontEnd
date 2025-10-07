@@ -13,6 +13,14 @@ const PrivateRoute = ({ children }) => {
   return isAuthenticated ? children : <Navigate to="/login" />;
 };
 
+const ProfessorRoute = ({ children }) => {
+  const { user, isAuthenticated } = useAuth();
+  if (!isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  return user?.role === "PROFESSOR" ? children : <Navigate to="/" />;
+};
+
 export const AppRouter = () => {
   return (
     <Routes>
@@ -22,25 +30,25 @@ export const AppRouter = () => {
       <Route
         path="/create"
         element={
-          <PrivateRoute>
+          <ProfessorRoute>
             <CreatePostPage />
-          </PrivateRoute>
+          </ProfessorRoute>
         }
       />
       <Route
         path="/edit/:id"
         element={
-          <PrivateRoute>
+          <ProfessorRoute>
             <EditPostPage />
-          </PrivateRoute>
+          </ProfessorRoute>
         }
       />
       <Route
         path="/admin"
         element={
-          <PrivateRoute>
+          <ProfessorRoute>
             <AdminPage />
-          </PrivateRoute>
+          </ProfessorRoute>
         }
       />
     </Routes>

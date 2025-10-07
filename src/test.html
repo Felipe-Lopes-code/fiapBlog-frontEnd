@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Hash Test</title>
+</head>
+<body>
+    <h1>Hash Generator Test</h1>
+    <div id="output"></div>
+    <script type="module">
+        import { generateSalt, hashPassword } from './utils/crypto.js';
+
+        async function generateHashesForDev() {
+            try {
+                const password = 'senha123';
+                const salt = generateSalt();
+                const hash = await hashPassword(password, salt);
+                
+                const output = document.getElementById('output');
+                
+                output.innerHTML += '<h2>Novos valores para mockUsers:</h2>';
+                output.innerHTML += `<pre>salt: "${salt}"\npasswordHash: "${hash}"</pre>`;
+                
+                // Teste de consistência
+                const salt2 = generateSalt();
+                const hash2 = await hashPassword(password, salt2);
+                output.innerHTML += '<h2>Teste de consistência (deve ser diferente do anterior):</h2>';
+                output.innerHTML += `<pre>salt: "${salt2}"\npasswordHash: "${hash2}"</pre>`;
+                
+                // Teste de verificação
+                const hash3 = await hashPassword(password, salt);
+                output.innerHTML += '<h2>Teste de verificação (deve ser igual ao primeiro hash):</h2>';
+                output.innerHTML += `<pre>hash3: "${hash3}"</pre>`;
+                output.innerHTML += `<p>Hash3 === Hash1: ${hash3 === hash}</p>`;
+                
+            } catch (error) {
+                console.error('Erro ao gerar hashes:', error);
+                document.getElementById('output').innerHTML = `<p style="color: red">Erro: ${error.message}</p>`;
+            }
+        }
+
+        // Executa o teste
+        generateHashesForDev();
+    </script>
+</body>
+</html>

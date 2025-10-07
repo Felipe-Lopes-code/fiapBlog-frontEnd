@@ -1,13 +1,15 @@
-import axios from 'axios';
+﻿import axios from 'axios';
 import { mockApi } from './mockApi';
 
 // Verifica se estamos em desenvolvimento
 const isDevelopment = import.meta.env.DEV;
 
+// Configuração do axios
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
 });
 
+// Adiciona o token em todas as requisições
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('token');
   if (token) {
@@ -16,8 +18,8 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Use mockApi em desenvolvimento e api real em produção
-export const postService = isDevelopment ? mockApi : {
+// API para produção
+const prodApi = {
   getAllPosts: async (searchTerm = '') => {
     const response = await api.get(`/posts${searchTerm ? `?search=${searchTerm}` : ''}`);
     return response.data;
@@ -45,18 +47,12 @@ export const postService = isDevelopment ? mockApi : {
   addComment: async (postId, comment) => {
     const response = await api.post(`/posts/${postId}/comments`, comment);
     return response.data;
-  }
-};
-
-export const authService = {
-  login: async (credentials) => {
-    const response = await api.post('/auth/login', credentials);
-    return response.data;
   },
 
-  logout: () => {
-    localStorage.removeItem('token');
+  deleteComment: async (postId, commentIndex) => {
+    await api.delete(`/posts/${postId}/comments/${commentIndex}`);
   }
 };
 
-export default api;
+// Exporta a API mock em desenvolvimento e a API real em produção
+export const postService = isDevelopment ? mockApi : prodApi;

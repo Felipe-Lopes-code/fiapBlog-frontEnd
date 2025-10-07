@@ -34,7 +34,7 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   useEffect(() => {
     fetchPosts();
@@ -77,7 +77,7 @@ const HomePage = () => {
         <Button variant="primary" onClick={handleSearch}>
           Buscar
         </Button>
-        {isAuthenticated && (
+        {isAuthenticated && user?.role === 'PROFESSOR' && (
           <Button variant="primary" onClick={() => navigate('/create')}>
             Novo Post
           </Button>

@@ -71,16 +71,24 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
-  // Verifica se o usuário pode editar posts
-  const canEditPosts = () => {
-    return mockAuthApi.canEditPosts(authState.user);
-  };
+  // Funções de verificação de permissões
+  const canReadPosts = () => mockAuthApi.canReadPosts(authState.user);
+  const canCreatePosts = () => mockAuthApi.canCreatePosts(authState.user);
+  const canEditPosts = () => mockAuthApi.canEditPosts(authState.user);
+  const canDeletePosts = () => mockAuthApi.canDeletePosts(authState.user);
+  const canAddComments = () => mockAuthApi.canAddComments(authState.user);
+  const hasPermission = (action) => mockAuthApi.hasPermission(authState.user, action);
 
   const value = { 
     ...authState, 
     login, 
     logout,
-    canEditPosts
+    canReadPosts,
+    canCreatePosts,
+    canEditPosts,
+    canDeletePosts,
+    canAddComments,
+    hasPermission
   };
 
   if (authState.isLoading) {

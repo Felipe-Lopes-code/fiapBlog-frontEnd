@@ -35,7 +35,7 @@ const CommentForm = styled.form`
 const PostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
   const [post, setPost] = useState(null);
   const [comment, setComment] = useState('');
   const [loading, setLoading] = useState(true);
@@ -82,7 +82,7 @@ const PostPage = () => {
         <PostMeta>Por {post.author}</PostMeta>
         <PostContent>{post.content}</PostContent>
         
-        {isAuthenticated && (
+        {isAuthenticated && user?.role === 'PROFESSOR' && (
           <Button 
             variant="primary" 
             onClick={() => navigate(`/edit/${post.id}`)}
@@ -98,6 +98,21 @@ const PostPage = () => {
           <Card key={index}>
             <p>{comment.content}</p>
             <PostMeta>Por {comment.author}</PostMeta>
+            {isAuthenticated && user?.role === 'PROFESSOR' && (
+              <Button 
+                variant="danger" 
+                onClick={async () => {
+                  try {
+                    await postService.deleteComment(id, index);
+                    await fetchPost();
+                  } catch (error) {
+                    console.error('Erro ao excluir comentário:', error);
+                  }
+                }}
+              >
+                Excluir Comentário
+              </Button>
+            )}
           </Card>
         ))}
 

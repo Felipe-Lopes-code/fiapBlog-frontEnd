@@ -54,7 +54,7 @@ const Footer = styled.footer`
 `;
 
 export const MainLayout = ({ children }) => {
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, user, canCreatePosts } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -72,10 +72,15 @@ export const MainLayout = ({ children }) => {
           <NavLinks>
             {isAuthenticated ? (
               <>
-                <StyledLink to="/admin">Admin</StyledLink>
-                <StyledLink to="/create">Novo Post</StyledLink>
+                {/* Exibe links de administração apenas para professores */}
+                {canCreatePosts() && (
+                  <>
+                    <StyledLink to="/admin">Admin</StyledLink>
+                    <StyledLink to="/create">Novo Post</StyledLink>
+                  </>
+                )}
                 <Button variant="primary" onClick={handleLogout}>
-                  Sair
+                  Sair {user?.name}
                 </Button>
               </>
             ) : (

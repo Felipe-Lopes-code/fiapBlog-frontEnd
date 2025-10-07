@@ -2,6 +2,8 @@
 
 Este é o frontend do FIAP Blog, uma aplicação web desenvolvida em React que permite a criação, visualização e gerenciamento de posts em um blog, com funcionalidades específicas para professores e alunos.
 
+> **Nota**: Atualizado em 07/10/2025 com novas funcionalidades de controle de acesso e sistema de comentários.
+
 ## 🚀 Tecnologias Utilizadas
 
 - React
@@ -101,31 +103,63 @@ src/
 
 ## 📱 Funcionalidades
 
-### Página Principal
-- Lista de posts com título, autor e descrição
-- Campo de busca para filtrar posts
-- Navegação para posts individuais
+### Sistema de Posts
+- Criação de posts (apenas professores)
+- Visualização de posts (todos usuários)
+- Edição de posts (apenas professores)
+- Exclusão de posts (apenas professores)
+- Campo de busca por título ou conteúdo
+- Navegação intuitiva entre posts
+- Exibição de autor e data de criação
 
-### Visualização de Post
-- Exibição completa do conteúdo do post
-- Sistema de comentários
-- Opções de edição para professores autenticados
+### Sistema de Comentários
+- Adição de comentários (todos usuários autenticados)
+- Visualização de comentários (todos usuários)
+- Exclusão de comentários (apenas professores)
+- Exibição de autor do comentário
+- Ordem cronológica dos comentários
 
 ### Área Administrativa (Professores)
-- Login seguro
-- Criação de novos posts
-- Edição de posts existentes
-- Exclusão de posts
-- Gerenciamento de todos os posts
+- Dashboard com visão geral
+- Gerenciamento completo de posts
+- Moderação de comentários
+- Interface intuitiva para criação/edição
+- Feedback visual das ações
 
-## 🔒 Autenticação
+## 🔒 Autenticação e Segurança
 
-O sistema utiliza JWT (JSON Web Tokens) para autenticação. Os tokens são armazenados no localStorage e enviados automaticamente em todas as requisições que necessitam de autenticação.
+### Sistema de Autenticação
+- Utiliza JWT (JSON Web Tokens)
+- Tokens armazenados no localStorage
+- Interceptor Axios para injeção automática do token
+- Expiração de token após 24 horas
+- Criptografia de senhas com salt único por usuário
 
 ### Rotas Protegidas
-- `/create` - Criação de posts
-- `/edit/:id` - Edição de posts
-- `/admin` - Painel administrativo
+- `/create` - Criação de posts (apenas professores)
+- `/edit/:id` - Edição de posts (apenas professores)
+- `/admin` - Painel administrativo (apenas professores)
+
+### Controle de Acesso (RBAC)
+#### 🎓 Alunos (STUDENT)
+- Visualizar todos os posts
+- Ler posts completos
+- Adicionar comentários em posts
+- Visualizar comentários
+
+#### 👨‍🏫 Professores (PROFESSOR)
+- Todas as permissões dos alunos
+- Criar novos posts
+- Editar posts existentes
+- Excluir posts
+- Excluir comentários
+- Acessar área administrativa
+
+### Segurança
+- Validação de token em cada requisição
+- Verificação de papel do usuário em cada operação sensível
+- Proteção contra XSS
+- Sanitização de dados de entrada
 
 ## 🎨 Estilização
 

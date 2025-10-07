@@ -47,6 +47,15 @@ export const mockApi = {
     return mockPosts;
   },
 
+  deleteComment: async (postId, commentIndex) => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const post = mockPosts.find(p => p.id === parseInt(postId));
+    if (post && post.comments) {
+      post.comments.splice(commentIndex, 1);
+    }
+    return post;
+  },
+
   getPostById: async (id) => {
     await new Promise(resolve => setTimeout(resolve, 300));
     const post = mockPosts.find(p => p.id === Number(id));

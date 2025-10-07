@@ -6,15 +6,16 @@ export default defineConfig({
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  esbuild: {
-    loader: 'jsx',
-    include: /src\/.*\.jsx?$/,
-    exclude: []
-  },
   test: {
     globals: true,
     environment: 'jsdom',
     setupFiles: './src/test/setup.js',
-    exclude: ['node_modules/', 'src/test/setup.js']
+    include: ['**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}'],
+    exclude: ['node_modules', 'dist', '.idea', '.git', '.cache'],
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      exclude: ['node_modules/']
+    }
   }
 })
