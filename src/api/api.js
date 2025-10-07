@@ -1,4 +1,8 @@
 import axios from 'axios';
+import { mockApi } from './mockApi';
+
+// Verifica se estamos em desenvolvimento
+const isDevelopment = import.meta.env.DEV;
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000',
@@ -12,7 +16,8 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-export const postService = {
+// Use mockApi em desenvolvimento e api real em produção
+export const postService = isDevelopment ? mockApi : {
   getAllPosts: async (searchTerm = '') => {
     const response = await api.get(`/posts${searchTerm ? `?search=${searchTerm}` : ''}`);
     return response.data;

@@ -43,7 +43,9 @@ const HomePage = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
+      console.log('Buscando posts...');
       const data = await postService.getAllPosts(searchTerm);
+      console.log('Posts recebidos:', data);
       setPosts(data);
     } catch (error) {
       console.error('Erro ao buscar posts:', error);

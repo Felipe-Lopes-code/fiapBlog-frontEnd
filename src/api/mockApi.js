@@ -1,72 +1,96 @@
-const initialPosts = [
-  { id: 1, title: 'Introdução ao React com Hooks', author: 'Prof. Silva', content: 'Neste post, vamos explorar os fundamentos do React e como os Hooks modernizaram o desenvolvimento de componentes. Abordaremos useState, useEffect e useContext com exemplos práticos.' },
-  { id: 2, title: 'Gerenciamento de Estado Avançado', author: 'Prof. Santos', content: 'Uma análise profunda sobre gerenciamento de estado. Comparamos Redux, Context API e abordagens mais modernas, destacando os prós e contras de cada uma.' },
-  { id: 3, title: 'Segurança no Front-end: Boas Práticas', author: 'Profa. Oliveira', content: 'A segurança é crucial. Este post detalha como manusear tokens (JWTs), proteger rotas e prevenir vulnerabilidades comuns como ataques XSS e CSRF.' }
+const mockPosts = [
+  {
+    id: 1,
+    title: "Introdução à Inteligência Artificial",
+    author: "Profa. Maria Silva",
+    content: "A Inteligência Artificial (IA) tem revolucionado diversos setores da sociedade. Este post explora os conceitos fundamentais da IA e suas aplicações práticas no mundo real.\n\nA IA pode ser definida como a capacidade de máquinas de simular comportamentos inteligentes, como aprendizado, reconhecimento de padrões e tomada de decisões. Com o avanço da tecnologia, suas aplicações têm se expandido rapidamente, desde assistentes virtuais até carros autônomos.\n\nPrincipais áreas da IA:\n1. Machine Learning\n2. Deep Learning\n3. Processamento de Linguagem Natural\n4. Visão Computacional\n\nO futuro da IA promete ainda mais inovações e descobertas emocionantes!",
+    description: "Uma visão geral sobre os fundamentos da Inteligência Artificial e suas aplicações.",
+    createdAt: "2025-10-01",
+    comments: [
+      {
+        id: 1,
+        author: "João Pedro",
+        content: "Excelente artigo! Muito esclarecedor sobre os conceitos básicos de IA.",
+        createdAt: "2025-10-02"
+      }
+    ]
+  },
+  {
+    id: 2,
+    title: "Desenvolvimento Web Moderno com React",
+    author: "Prof. Carlos Santos",
+    content: "O React tem se mantido como uma das principais bibliotecas para desenvolvimento web. Neste post, vamos explorar as melhores práticas e padrões modernos de desenvolvimento React.\n\nO React introduziu conceitos revolucionários como o Virtual DOM e componentes reutilizáveis, que mudaram a forma como desenvolvemos interfaces web. Hoje, com hooks e context API, o desenvolvimento se tornou ainda mais intuitivo e eficiente.\n\nTópicos principais:\n- Componentes Funcionais\n- Hooks (useState, useEffect, useContext)\n- Context API para gerenciamento de estado\n- Performance e otimização\n\nO ecossistema React continua evoluindo e trazendo novas funcionalidades interessantes.",
+    description: "Aprenda sobre as últimas tendências e melhores práticas no desenvolvimento React.",
+    createdAt: "2025-10-03",
+    comments: []
+  },
+  {
+    id: 3,
+    title: "Segurança Cibernética: Protegendo Dados na Era Digital",
+    author: "Prof. Ricardo Oliveira",
+    content: "A segurança cibernética é uma preocupação crescente no mundo digital atual. Este post aborda as principais ameaças e métodos de proteção para sistemas e dados.\n\nCom o aumento dos ataques cibernéticos e vazamentos de dados, é essencial entender como proteger informações sensíveis e sistemas críticos. A segurança cibernética envolve uma combinação de tecnologias, processos e práticas.\n\nPrincipais aspectos da segurança cibernética:\n1. Criptografia de dados\n2. Autenticação de dois fatores\n3. Backup e recuperação de dados\n4. Monitoramento de ameaças\n\nA proteção adequada de dados é fundamental para empresas e indivíduos no mundo digital.",
+    description: "Entenda os fundamentos da segurança cibernética e como proteger seus dados.",
+    createdAt: "2025-10-05",
+    comments: []
+  }
 ];
 
-let postsDB = [...initialPosts];
-let nextPostId = 4;
-
 export const mockApi = {
-  // Simula GET /posts
-  getPosts: async (searchTerm = '') => {
-    console.log(`API: Buscando posts com termo: "${searchTerm}"`);
-    return new Promise(resolve => setTimeout(() => {
-      const filteredPosts = postsDB.filter(p =>
-        p.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        p.author.toLowerCase().includes(searchTerm.toLowerCase())
+  getAllPosts: async (searchTerm = "") => {
+    await new Promise(resolve => setTimeout(resolve, 500));
+    if (searchTerm) {
+      return mockPosts.filter(post => 
+        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        post.content.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      resolve({ data: filteredPosts });
-    }, 500));
+    }
+    return mockPosts;
   },
-  // Simula GET /posts/:id
-  getPost: async (id) => {
-    console.log(`API: Buscando post com id: ${id}`);
-    return new Promise(resolve => setTimeout(() => {
-      const post = postsDB.find(p => p.id === parseInt(id));
-      resolve({ data: post });
-    }, 300));
+
+  getPostById: async (id) => {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    const post = mockPosts.find(p => p.id === Number(id));
+    if (!post) throw new Error("Post não encontrado");
+    return post;
   },
-  // Simula POST /posts
+
   createPost: async (postData) => {
-    console.log('API: Criando novo post', postData);
-    return new Promise(resolve => setTimeout(() => {
-      const newPost = { ...postData, id: nextPostId++ };
-      postsDB.push(newPost);
-      resolve({ data: newPost });
-    }, 800));
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const newPost = {
+      id: mockPosts.length + 1,
+      ...postData,
+      createdAt: new Date().toISOString().split("T")[0],
+      comments: []
+    };
+    mockPosts.push(newPost);
+    return newPost;
   },
-  // Simula PUT /posts/:id
+
   updatePost: async (id, postData) => {
-    console.log(`API: Atualizando post ${id}`, postData);
-    return new Promise(resolve => setTimeout(() => {
-      postsDB = postsDB.map(p => p.id === parseInt(id) ? { ...p, ...postData } : p);
-      const updatedPost = postsDB.find(p => p.id === parseInt(id));
-      resolve({ data: updatedPost });
-    }, 800));
+    await new Promise(resolve => setTimeout(resolve, 500));
+    const index = mockPosts.findIndex(p => p.id === Number(id));
+    if (index === -1) throw new Error("Post não encontrado");
+    mockPosts[index] = { ...mockPosts[index], ...postData, id: Number(id) };
+    return mockPosts[index];
   },
-  // Simula DELETE /posts/:id
+
   deletePost: async (id) => {
-    console.log(`API: Deletando post ${id}`);
-    return new Promise(resolve => setTimeout(() => {
-      postsDB = postsDB.filter(p => p.id !== parseInt(id));
-      resolve({ data: { message: 'Post deletado com sucesso' } });
-    }, 800));
+    await new Promise(resolve => setTimeout(resolve, 300));
+    const index = mockPosts.findIndex(p => p.id === Number(id));
+    if (index === -1) throw new Error("Post não encontrado");
+    mockPosts.splice(index, 1);
   },
-  // Simula POST /login
-  login: async (credentials) => {
-    console.log('API: Tentativa de login', credentials);
-    return new Promise((resolve, reject) => setTimeout(() => {
-      if (credentials.username === 'professor' && credentials.password === '1234') {
-        resolve({
-          data: {
-            user: { name: 'Professor(a) Admin', role: 'teacher' },
-            accessToken: 'fake-jwt-access-token-para-simulacao'
-          }
-        });
-      } else {
-        reject({ response: { data: { message: 'Credenciais inválidas.' } } });
-      }
-    }, 1000));
+
+  addComment: async (postId, comment) => {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    const post = mockPosts.find(p => p.id === Number(postId));
+    if (!post) throw new Error("Post não encontrado");
+    const newComment = {
+      id: (post.comments.length || 0) + 1,
+      ...comment,
+      createdAt: new Date().toISOString().split("T")[0]
+    };
+    post.comments.push(newComment);
+    return newComment;
   }
 };

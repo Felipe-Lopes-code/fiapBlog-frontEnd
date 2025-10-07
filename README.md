@@ -98,6 +98,35 @@ O projeto utiliza Styled Components para estilização, com um sistema de tema c
 
 ## 📱 Responsividade
 
+## 🐞 Problemas Conhecidos e Soluções
+
+### 1. Configuração do Vite
+- **Problema**: Erro na configuração inicial do Vite com React
+- **Solução**: Instalação do plugin @vitejs/plugin-react e configuração correta no vite.config.js
+```bash
+npm install @vitejs/plugin-react --save-dev
+```
+
+### 2. Mock API
+- **Problema**: Dificuldades na formatação do arquivo mockApi.js e duplicação de dados
+- **Solução**: Reescrita do arquivo com estrutura adequada e remoção de duplicações
+- **Detalhes**: 
+  - Implementação de array mockPosts com dados estruturados
+  - Adição de delays artificiais para simular API real
+  - Correção da formatação de template strings
+  - Implementação de funções assíncronas com tratamento de erros
+
+### 3. Desenvolvimento Atual
+- Sistema de mock implementado com dados de exemplo
+- Funcionalidades básicas de CRUD funcionando localmente
+- Persistência de dados limitada à sessão do navegador
+
+### 4. Próximos Passos
+- Integração com backend real
+- Implementação de testes automatizados
+- Melhorias na UX/UI
+- Cache de dados para melhor performance
+
 A aplicação é totalmente responsiva, adaptando-se a diferentes tamanhos de tela:
 - Desktop
 - Tablet
