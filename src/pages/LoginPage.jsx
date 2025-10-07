@@ -20,23 +20,31 @@ const ErrorMessage = styled.p`
   margin: ${({ theme }) => theme.spacing.sm} 0;
 `;
 
+const LoginHelper = styled.div`
+  margin-top: ${({ theme }) => theme.spacing.lg};
+  padding: ${({ theme }) => theme.spacing.md};
+  background-color: ${({ theme }) => theme.colors.backgroundAlt};
+  border-radius: ${({ theme }) => theme.borderRadius};
+`;
+
 const LoginPage = () => {
   const [credentials, setCredentials] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const { login } = useAuth();
   const navigate = useNavigate();
 
+  const userExamples = [
+    { role: 'Professor', email: 'maria.silva@fiap.com.br', password: 'senha123' },
+    { role: 'Aluno', email: 'joao.aluno@fiap.com.br', password: 'senha123' },
+  ];
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     
     try {
-      const success = await login(credentials);
-      if (success) {
-        navigate('/');
-      } else {
-        setError('Credenciais inválidas');
-      }
+      await login(credentials.email, credentials.password);
+      navigate('/');
     } catch (error) {
       setError('Erro ao fazer login. Tente novamente.');
     }
@@ -72,6 +80,24 @@ const LoginPage = () => {
           Entrar
         </Button>
       </Form>
+
+      <LoginHelper>
+        <h3>Usuários para teste:</h3>
+        {userExamples.map((user, index) => (
+          <div key={index} style={{ marginTop: '10px' }}>
+            <h4>{user.role}:</h4>
+            <p><strong>Email:</strong> {user.email}</p>
+            <p><strong>Senha:</strong> {user.password}</p>
+            <Button
+              variant="secondary"
+              type="button"
+              onClick={() => setCredentials({ email: user.email, password: user.password })}
+            >
+              Preencher dados de {user.role}
+            </Button>
+          </div>
+        ))}
+      </LoginHelper>
     </LoginCard>
   );
 };
