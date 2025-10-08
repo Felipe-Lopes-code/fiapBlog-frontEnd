@@ -75,7 +75,7 @@
     "@mui/icons-material": "^7.3.4",
     "@mui/material": "^7.3.4",
     "axios": "^1.12.2",
-    "react": "^18.3.1",
+    "react": "^19.2.0",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.9.3",
     "styled-components": "^6.1.19"
@@ -85,7 +85,7 @@
     "@testing-library/jest-dom": "^6.1.4",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
-    "@types/react": "^18.2.15",
+    "@types/react": "^19.2.2",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react": "^4.0.4",
     "@vitest/coverage-v8": "^3.2.4",
