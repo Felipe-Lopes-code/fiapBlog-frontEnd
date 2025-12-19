@@ -1,7 +1,8 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import { mockAuthApi } from '../api/mockAuthApi';
 
 const AuthContext = createContext();
+export { AuthContext };
 
 const TOKEN_KEY = '@FiapBlog:token';
 
@@ -97,5 +98,3 @@ export const AuthProvider = ({ children }) => {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
-
-export const useAuth = () => useContext(AuthContext);

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { postService } from '../api/api';
 import { Card, Input, Button } from '../components/common/StyledComponents';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/authHooks';
 
 const SearchContainer = styled.div`
   margin: ${({ theme }) => theme.spacing.md} 0;
@@ -43,9 +43,7 @@ const HomePage = () => {
   const fetchPosts = async () => {
     try {
       setLoading(true);
-      console.log('Buscando posts...');
       const data = await postService.getAllPosts(searchTerm);
-      console.log('Posts recebidos:', data);
       setPosts(data);
     } catch (error) {
       console.error('Erro ao buscar posts:', error);

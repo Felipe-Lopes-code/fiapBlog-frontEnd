@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { postService } from '../api/api';
 import { Card, Button, TextArea } from '../components/common/StyledComponents';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/authHooks';
 
 const PostContainer = styled(Card)`
   margin-top: ${({ theme }) => theme.spacing.lg};

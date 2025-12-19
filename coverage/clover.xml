@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1759884328417" clover="3.2.0">
-  <project timestamp="1759884328417" name="All files">
-    <metrics statements="1482" coveredstatements="564" conditionals="49" coveredconditionals="31" methods="85" coveredmethods="15" elements="1616" coveredelements="610" complexity="0" loc="1482" ncloc="1482" packages="11" files="28" classes="28"/>
+<coverage generated="1766187027411" clover="3.2.0">
+  <project timestamp="1766187027411" name="All files">
+    <metrics statements="1348" coveredstatements="544" conditionals="45" coveredconditionals="31" methods="81" coveredmethods="15" elements="1474" coveredelements="590" complexity="0" loc="1348" ncloc="1348" packages="11" files="25" classes="25"/>
     <package name="src">
       <metrics statements="33" coveredstatements="0" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="0"/>
       <file name="App.jsx" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\App.jsx">
@@ -468,25 +468,24 @@
       </file>
     </package>
     <package name="src.context">
-      <metrics statements="87" coveredstatements="46" conditionals="7" coveredconditionals="6" methods="11" coveredmethods="3"/>
+      <metrics statements="90" coveredstatements="49" conditionals="7" coveredconditionals="6" methods="11" coveredmethods="3"/>
       <file name="AuthContext.jsx" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\context\AuthContext.jsx">
-        <metrics statements="87" coveredstatements="46" conditionals="7" coveredconditionals="6" methods="11" coveredmethods="3"/>
+        <metrics statements="86" coveredstatements="45" conditionals="6" coveredconditionals="5" methods="10" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="8" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="9" count="8" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="cond" truecount="1" falsecount="0"/>
         <line num="10" count="8" type="stmt"/>
         <line num="11" count="8" type="stmt"/>
         <line num="12" count="8" type="stmt"/>
         <line num="13" count="8" type="stmt"/>
         <line num="14" count="8" type="stmt"/>
-        <line num="17" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="18" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="19" count="4" type="stmt"/>
-        <line num="20" count="4" type="cond" truecount="0" falsecount="1"/>
-        <line num="21" count="0" type="stmt"/>
+        <line num="15" count="8" type="stmt"/>
+        <line num="18" count="8" type="cond" truecount="1" falsecount="0"/>
+        <line num="19" count="4" type="cond" truecount="1" falsecount="0"/>
+        <line num="20" count="4" type="stmt"/>
+        <line num="21" count="4" type="cond" truecount="0" falsecount="1"/>
         <line num="22" count="0" type="stmt"/>
         <line num="23" count="0" type="stmt"/>
         <line num="24" count="0" type="stmt"/>
@@ -504,14 +503,14 @@
         <line num="36" count="0" type="stmt"/>
         <line num="37" count="0" type="stmt"/>
         <line num="38" count="0" type="stmt"/>
-        <line num="39" count="4" type="stmt"/>
-        <line num="40" count="4" type="cond" truecount="1" falsecount="0"/>
-        <line num="41" count="4" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="40" count="4" type="stmt"/>
+        <line num="41" count="4" type="cond" truecount="1" falsecount="0"/>
         <line num="42" count="4" type="stmt"/>
-        <line num="44" count="4" type="stmt"/>
-        <line num="45" count="8" type="stmt"/>
-        <line num="47" count="8" type="stmt"/>
-        <line num="48" count="0" type="stmt"/>
+        <line num="43" count="4" type="stmt"/>
+        <line num="45" count="4" type="stmt"/>
+        <line num="46" count="8" type="stmt"/>
+        <line num="48" count="8" type="stmt"/>
         <line num="49" count="0" type="stmt"/>
         <line num="50" count="0" type="stmt"/>
         <line num="51" count="0" type="stmt"/>
@@ -526,8 +525,8 @@
         <line num="60" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
         <line num="62" count="0" type="stmt"/>
-        <line num="64" count="8" type="stmt"/>
-        <line num="65" count="0" type="stmt"/>
+        <line num="63" count="0" type="stmt"/>
+        <line num="65" count="8" type="stmt"/>
         <line num="66" count="0" type="stmt"/>
         <line num="67" count="0" type="stmt"/>
         <line num="68" count="0" type="stmt"/>
@@ -535,13 +534,13 @@
         <line num="70" count="0" type="stmt"/>
         <line num="71" count="0" type="stmt"/>
         <line num="72" count="0" type="stmt"/>
-        <line num="75" count="8" type="stmt"/>
+        <line num="73" count="0" type="stmt"/>
         <line num="76" count="8" type="stmt"/>
         <line num="77" count="8" type="stmt"/>
         <line num="78" count="8" type="stmt"/>
         <line num="79" count="8" type="stmt"/>
         <line num="80" count="8" type="stmt"/>
-        <line num="82" count="8" type="stmt"/>
+        <line num="81" count="8" type="stmt"/>
         <line num="83" count="8" type="stmt"/>
         <line num="84" count="8" type="stmt"/>
         <line num="85" count="8" type="stmt"/>
@@ -552,12 +551,19 @@
         <line num="90" count="8" type="stmt"/>
         <line num="91" count="8" type="stmt"/>
         <line num="92" count="8" type="stmt"/>
-        <line num="94" count="8" type="cond" truecount="1" falsecount="0"/>
-        <line num="95" count="4" type="stmt"/>
+        <line num="93" count="8" type="stmt"/>
+        <line num="95" count="8" type="cond" truecount="1" falsecount="0"/>
         <line num="96" count="4" type="stmt"/>
-        <line num="98" count="4" type="stmt"/>
+        <line num="97" count="4" type="stmt"/>
         <line num="99" count="4" type="stmt"/>
-        <line num="101" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="100" count="4" type="stmt"/>
+      </file>
+      <file name="authHooks.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\context\authHooks.js">
+        <metrics statements="4" coveredstatements="4" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <line num="1" count="1" type="stmt"/>
+        <line num="2" count="1" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="4" count="1" type="cond" truecount="1" falsecount="0"/>
       </file>
     </package>
     <package name="src.hooks">
@@ -1229,7 +1235,7 @@
       </file>
     </package>
     <package name="src.styles">
-      <metrics statements="57" coveredstatements="57" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="1"/>
+      <metrics statements="34" coveredstatements="34" conditionals="1" coveredconditionals="1" methods="3" coveredmethods="1"/>
       <file name="GlobalStyles.jsx" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\styles\GlobalStyles.jsx">
         <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -1239,35 +1245,12 @@
         <line num="14" count="1" type="stmt"/>
       </file>
       <file name="ThemeProvider.jsx" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\styles\ThemeProvider.jsx">
-        <metrics statements="28" coveredstatements="28" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
+        <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
-        <line num="4" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="6" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="8" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="18" count="1" type="stmt"/>
-        <line num="19" count="1" type="stmt"/>
-        <line num="20" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
-        <line num="22" count="1" type="stmt"/>
-        <line num="23" count="1" type="stmt"/>
-        <line num="24" count="1" type="stmt"/>
-        <line num="25" count="1" type="stmt"/>
-        <line num="26" count="1" type="stmt"/>
-        <line num="27" count="1" type="stmt"/>
-        <line num="29" count="1" type="cond" truecount="1" falsecount="0"/>
-        <line num="30" count="12" type="stmt"/>
+        <line num="3" count="1" type="stmt"/>
+        <line num="5" count="1" type="cond" truecount="1" falsecount="0"/>
+        <line num="6" count="12" type="stmt"/>
       </file>
       <file name="theme.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\styles\theme.js">
         <metrics statements="24" coveredstatements="24" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -1384,7 +1367,7 @@
       </file>
     </package>
     <package name="src.utils">
-      <metrics statements="200" coveredstatements="33" conditionals="4" coveredconditionals="0" methods="10" coveredmethods="0"/>
+      <metrics statements="86" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
       <file name="crypto.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\utils\crypto.js">
         <metrics statements="86" coveredstatements="33" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
@@ -1473,132 +1456,6 @@
         <line num="84" count="0" type="stmt"/>
         <line num="85" count="0" type="stmt"/>
         <line num="86" count="0" type="stmt"/>
-      </file>
-      <file name="generateBrowserHash.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\utils\generateBrowserHash.js">
-        <metrics statements="27" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-      </file>
-      <file name="generateHash.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\utils\generateHash.js">
-        <metrics statements="18" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-      </file>
-      <file name="generateTestHash.cjs" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\utils\generateTestHash.cjs">
-        <metrics statements="42" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
-        <line num="28" count="0" type="stmt"/>
-        <line num="29" count="0" type="stmt"/>
-        <line num="30" count="0" type="stmt"/>
-        <line num="31" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="33" count="0" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="35" count="0" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="37" count="0" type="stmt"/>
-        <line num="38" count="0" type="stmt"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="42" count="0" type="stmt"/>
-      </file>
-      <file name="testCrypto.js" path="C:\Users\casho\Documents\projects\fiapBlog-frontEnd\fiapBlog-frontEnd\src\utils\testCrypto.js">
-        <metrics statements="27" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="0" type="cond" truecount="0" falsecount="1"/>
-        <line num="2" count="0" type="stmt"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="4" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="8" count="0" type="stmt"/>
-        <line num="9" count="0" type="stmt"/>
-        <line num="10" count="0" type="stmt"/>
-        <line num="11" count="0" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="14" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="18" count="0" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="23" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="25" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="27" count="0" type="stmt"/>
       </file>
     </package>
   </project>

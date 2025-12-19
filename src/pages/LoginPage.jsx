@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { Card, Input, Button } from '../components/common/StyledComponents';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/authHooks';
 
 const LoginCard = styled(Card)`
   max-width: 400px;

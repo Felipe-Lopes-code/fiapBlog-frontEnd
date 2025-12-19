@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { useAuth } from '../../context/AuthContext';
+import { useAuth } from '../../context/authHooks';
 import { Button } from '../common/StyledComponents';
 
 const LayoutContainer = styled.div`

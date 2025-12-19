@@ -158,7 +158,7 @@ O projeto inclui pipeline completo de CI/CD:
 ### Workflows
 - `.github/workflows/ci-cd.yml`: Pipeline principal
 - `.github/workflows/dependabot.yml`: Auto-merge de dependências
-
+99
 ## 🔍 Problemas Conhecidos e Soluções
 
 ### 🧪 Testes

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/authHooks';
 import HomePage from '../pages/HomePage';
 import PostPage from '../pages/PostPage';
 import CreatePostPage from '../pages/CreatePostPage';
